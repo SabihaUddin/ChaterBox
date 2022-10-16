@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:lets_design/authenticate/create_account.dart';
 
 class LoginScreen extends StatefulWidget {
   const LoginScreen({Key? key}) : super(key: key);
@@ -8,6 +9,8 @@ class LoginScreen extends StatefulWidget {
 }
 
 class _LoginScreenState extends State<LoginScreen> {
+  final emailController =TextEditingController();
+  final passwordController= TextEditingController();
   @override
   Widget build(BuildContext context) {
     final size = MediaQuery.of(context).size;
@@ -49,17 +52,27 @@ class _LoginScreenState extends State<LoginScreen> {
           Container(
             width: size.width,
             alignment: Alignment.center,
-            child: field(size, 'Email', Icons.account_box),
+            child: field(size, 'Email', Icons.account_box,emailController),
           ),
           const SizedBox(height: 10,),
           Container(
             width: size.width,
             alignment: Alignment.center,
-            child: field(size, 'Password', Icons.lock),
+            child: field(size, 'Password', Icons.lock,passwordController),
           ),
           SizedBox(height: size.height/10,),
 
           customButton(size),
+          SizedBox(height: size.height/20,),
+          GestureDetector(
+            onTap: ()=>Navigator.of(context).push(MaterialPageRoute(builder: (_)=>CreateAccount())),
+            child:const Text('Create Account?',
+            style: TextStyle(
+              color: Colors.blue,
+              fontSize: 18,
+              fontWeight: FontWeight.w500
+            ),),
+          )
         ],
       ),
     );
@@ -85,11 +98,12 @@ class _LoginScreenState extends State<LoginScreen> {
 
   }
 
-  Widget field(Size size, String hintText,IconData icon) {
+  Widget field(Size size, String hintText,IconData icon,TextEditingController cont) {
     return Container(
       height: size.height / 14,
       width: size.width / 1.2,
       child: TextField(
+        controller: cont,
         decoration: InputDecoration(
           prefixIcon: Icon(icon),
           hintText: hintText,
