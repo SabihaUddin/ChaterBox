@@ -1,5 +1,6 @@
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
+import 'package:lets_design/authenticate/authentication.dart';
 import 'package:lets_design/authenticate/login_screen.dart';
 import 'package:lets_design/pages/home_page.dart';
 
@@ -22,7 +23,7 @@ class MyApp extends StatelessWidget {
 
         primarySwatch: Colors.blue,
       ),
-      home: LoginScreen(),
+      home: Authentication(),
     );
   }
 }
